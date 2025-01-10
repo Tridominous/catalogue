@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = localFont({
@@ -18,6 +17,9 @@ const spaceGrotesk = localFont({
 export const metadata: Metadata = {
   title: "HLS Catalogue",
   description: "A database of HLS equipment",
+  icons: {
+    icon: "/images/DMU04.svg",
+  }
 };
 
 export default function RootLayout({
