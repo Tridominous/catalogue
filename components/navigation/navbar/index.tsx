@@ -1,35 +1,35 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react'
-import Theme from './Theme';
-import MobileNavigation from './MobileNavigation';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
+import MobileNavigation from "./MobileNavigation";
+import Theme from "./Theme";
 
 const Navbar = () => {
   return (
-    <nav 
-        className='flex-between background-light900_dark200 fixed z-50 w-full p-6 shadow-light-300 dark:shadow-none sm:p-12 gap-5'
-    >
-        <Link href="/" className='flex items-center gap-1'>
-            <Image
-                src="/images/DMU04.svg"
-                alt="DMU Logo"
-                width={60}
-                height={60}
-            />
-            <p className='h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden'>
-                HLS <span className='text-primary-500'>Catalogue</span>
-            </p>
-        </Link>
+    <nav className="flex-between background-light900_dark200 fixed z-50 w-full gap-5 p-6 shadow-light-300 dark:shadow-none sm:px-12">
+      <Link href="/" className="flex items-center gap-1">
+        <Image
+          src="/images/DMU04.svg"
+          width={80}
+          height={80}
+          alt="DMU Logo"
+        />
 
-        <p>Global Search</p>
+        <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">
+          HLS<span className="text-primary-500"> Database</span>
+        </p>
+      </Link>
 
-        <div className='flex-between gap-5'>
-            <Theme/>
+      <p>Global Search</p>
 
-            <MobileNavigation/>
-        </div>
+      <div className="flex-between gap-5">
+        <Theme />
+
+        <MobileNavigation />
+      </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar;

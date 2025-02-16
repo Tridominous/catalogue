@@ -39,7 +39,7 @@ const MobileNavigation = () => {
                 />
 
                 <p className='h2-bold font-space-grotesk text-dark-100 dark:text-light-900'>
-                    HLS <span className='text-primary-500'>Catalogue</span>
+                    HLS <span className='text-primary-500'>Database</span>
                 </p>
             </Link>
           

@@ -16,7 +16,7 @@ const spaceGrotesk = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "HLS Catalogue",
+  title: "HLS Database",
   description: "A database of HLS equipment",
   icons: {
     icon: "/images/DMU04.svg",
