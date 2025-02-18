@@ -5,8 +5,8 @@ const ROUTES = {
     SIGN_UP: '/sign-up',
     TEAM: "/team",
     COLLECTION: "/collections",
-    CATEGORIES: "/categories",
-    PROFILE: "/profile",
+    CATEGORIES: (id: string ) => `categories/${id}`, 
+    PROFILE: (id: string) => `profile/${id}`,
 }
 
 export default ROUTES;
