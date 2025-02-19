@@ -3,6 +3,7 @@ import Link from "next/link";
 import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
+import HomeFilter from "@/components/filters/HomeFilter";
 
 const equipment = [
   {
@@ -20,7 +21,7 @@ const equipment = [
     team: "R&D Team",
     serviceDate: new Date("2024-05-01"),
     comment: "Calibrated and in good condition.",
-    categories: "Electronics",
+    categories: [{ _id: "1", name: "Electronics", description: "Electronic measuring devices", Equipment: "1", createdAt: new Date() }],
     imgUrl: "https://example.com/oscilloscope.jpg",
     author: "user123",
     views: 10,
@@ -41,7 +42,10 @@ const equipment = [
     team: "Prototype Team",
     serviceDate: new Date("2024-06-15"),
     comment: "Requires minor maintenance.",
-    categories: ["Fabrication", "Prototyping"],
+    categories: [
+      { _id: "2", name: "Fabrication", description: "Fabrication equipment", Equipment: "2", createdAt: new Date() },
+      { _id: "3", name: "Prototyping", description: "Prototyping tools", Equipment: "2", createdAt: new Date() }
+    ],
     imgUrl: "https://example.com/3dprinter.jpg",
     author: "user456",
     views: 25,
@@ -62,7 +66,7 @@ const equipment = [
     team: "Production Team",
     serviceDate: new Date("2024-07-20"),
     comment: "Undergoing routine maintenance.",
-    categories: "Manufacturing",
+    categories: [{ _id: "4", name: "Manufacturing", description: "Manufacturing tools", Equipment: "3", createdAt: new Date() }],
     imgUrl: "https://example.com/cncmachine.jpg",
     author: "user789",
     views: 15,
@@ -83,7 +87,10 @@ const equipment = [
     team: "Research Team",
     serviceDate: new Date("2024-08-10"),
     comment: "Used for microbiological analysis.",
-    categories: ["Biology", "Research"],
+    categories: [
+      { _id: "5", name: "Biology", description: "Biological research tools", Equipment: "4", createdAt: new Date() },
+      { _id: "6", name: "Research", description: "General research equipment", Equipment: "4", createdAt: new Date() }
+    ],
     imgUrl: "https://example.com/microscope.jpg",
     author: "user321",
     views: 30,
@@ -104,7 +111,7 @@ const equipment = [
     team: "Analytical Team",
     serviceDate: new Date("2024-09-05"),
     comment: "Replaced light source recently.",
-    categories: "Chemistry",
+    categories: [{ _id: "7", name: "Chemistry", description: "Chemical analysis tools", Equipment: "5", createdAt: new Date() }],
     imgUrl: "https://example.com/spectrophotometer.jpg",
     author: "user654",
     views: 12,
@@ -117,11 +124,17 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
-  const { query = "" } = await searchParams;
+  const { query = "", filter = "" } = await searchParams;
 
-  const filteredEquipment = equipment.filter((equipment) =>
-    equipment.title.toLowerCase().includes(query?.toLowerCase())
-  );
+  const filteredEquipment = equipment.filter((equipment) => {
+    const matchesQuery = equipment.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
+    const matchesFilter = filter
+      ? equipment.categories[0].name.toLowerCase() === filter.toLowerCase()
+      : true;
+    return matchesQuery && matchesFilter;
+  });
 
   return (
     <>
@@ -143,11 +156,11 @@ const Home = async ({ searchParams }: SearchParams) => {
           otherClasses="flex-1"
         />
       </section>
-      {/* HomeFilter */}
+      <HomeFilter/>
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredEquipment.map((equipment) => (
-          <div>
-            <h1 key={equipment._id}>{equipment.title}</h1>
+          <div key={equipment._id}>
+            <h1>{equipment.title}</h1>
             <p>{equipment.brandname}</p>
           </div>
         ))}
