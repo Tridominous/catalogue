@@ -4,11 +4,12 @@ import LocalSearch from "@/components/search/LocalSearch";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import HomeFilter from "@/components/filters/HomeFilter";
+import EquipmentCard from "@/components/cards/EquipmentCard";
 
 const equipment = [
   {
     _id: "1",
-    title: "Oscilloscope",
+    name: "Oscilloscope",
     brandname: "Tektronix",
     modelname: "TDS 2024C",
     serialNumber: "12345ABC",
@@ -23,13 +24,13 @@ const equipment = [
     comment: "Calibrated and in good condition.",
     categories: [{ _id: "1", name: "Electronics", description: "Electronic measuring devices", Equipment: "1", createdAt: new Date() }],
     imgUrl: "https://example.com/oscilloscope.jpg",
-    author: "user123",
+    author: {_id: "1", name: "Cosmos", image: ""},
     views: 10,
-    createdAt: new Date()
+    createdAt: new Date("2024-05-01")
   },
   {
     _id: "2",
-    title: "3D Printer",
+    name: "3D Printer",
     brandname: "Prusa",
     modelname: "i3 MK3S+",
     serialNumber: "PRUSA9876",
@@ -47,13 +48,13 @@ const equipment = [
       { _id: "3", name: "Prototyping", description: "Prototyping tools", Equipment: "2", createdAt: new Date() }
     ],
     imgUrl: "https://example.com/3dprinter.jpg",
-    author: "user456",
+    // author: {_id: "2", name: "Olivia", image: ""},
     views: 25,
     createdAt: new Date()
   },
   {
     _id: "3",
-    title: "CNC Machine",
+    name: "CNC Machine",
     brandname: "Haas",
     modelname: "VF-2",
     serialNumber: "HAASVF2345",
@@ -68,13 +69,13 @@ const equipment = [
     comment: "Undergoing routine maintenance.",
     categories: [{ _id: "4", name: "Manufacturing", description: "Manufacturing tools", Equipment: "3", createdAt: new Date() }],
     imgUrl: "https://example.com/cncmachine.jpg",
-    author: "user789",
+    author: {_id: "3", name: "Daka", image: "/images/default_user.png"},
     views: 15,
     createdAt: new Date()
   },
   {
     _id: "4",
-    title: "Microscope",
+    name: "Microscope",
     brandname: "Olympus",
     modelname: "BX53",
     serialNumber: "OLYMP1234",
@@ -92,13 +93,13 @@ const equipment = [
       { _id: "6", name: "Research", description: "General research equipment", Equipment: "4", createdAt: new Date() }
     ],
     imgUrl: "https://example.com/microscope.jpg",
-    author: "user321",
+    author: {_id: "4", name: "Vardy", image: ""},
     views: 30,
     createdAt: new Date()
   },
   {
     _id: "5",
-    title: "Spectrophotometer",
+    name: "Spectrophotometer",
     brandname: "Shimadzu",
     modelname: "UV-1800",
     serialNumber: "SHIM5678",
@@ -113,7 +114,7 @@ const equipment = [
     comment: "Replaced light source recently.",
     categories: [{ _id: "7", name: "Chemistry", description: "Chemical analysis tools", Equipment: "5", createdAt: new Date() }],
     imgUrl: "https://example.com/spectrophotometer.jpg",
-    author: "user654",
+    author: {_id: "5", name: "Petro", image: ""},
     views: 12,
     createdAt: new Date()
   }
@@ -127,7 +128,7 @@ const Home = async ({ searchParams }: SearchParams) => {
   const { query = "", filter = "" } = await searchParams;
 
   const filteredEquipment = equipment.filter((equipment) => {
-    const matchesQuery = equipment.title
+    const matchesQuery = equipment.name
       .toLowerCase()
       .includes(query.toLowerCase());
     const matchesFilter = filter
@@ -160,8 +161,7 @@ const Home = async ({ searchParams }: SearchParams) => {
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredEquipment.map((equipment) => (
           <div key={equipment._id}>
-            <h1>{equipment.title}</h1>
-            <p>{equipment.brandname}</p>
+            <EquipmentCard key={equipment._id} equipment={equipment} />
           </div>
         ))}
       </div>

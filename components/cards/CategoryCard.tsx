@@ -7,8 +7,9 @@ import { Badge } from "../ui/badge";
 interface Props {
     _id: string;
     name: string;
-    equipment: number;
+    equipment?: number;
     showCount?: boolean;
+    compact?: boolean;
 };
 
 const CategoryCard = ({ _id, name, equipment, showCount}: Props) => {

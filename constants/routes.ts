@@ -8,6 +8,7 @@ const ROUTES = {
     ADD_EQUIPMENT: "/add-equipment",
     CATEGORIES: (id: string ) => `categories/${id}`, 
     PROFILE: (id: string) => `profile/${id}`,
+    EQUIPMENT: (id: string) => `equipment/${id}`,
 }
 
 export default ROUTES;
