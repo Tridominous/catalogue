@@ -15,7 +15,7 @@ const equipment = [
     serialNumber: "12345ABC",
     assetTag: "EQ-001",
     subunits: [
-      { name: "Probe", brandname: "Tektronix", modelname: "TPP0200", serialNumber: "6789XYZ" }
+      { _id: "subunit-1", name: "Probe", brandname: "Tektronix", modelname: "TPP0200", serialNumber: "6789XYZ" }
     ],
     labNumber: "101",
     labName: "Electronics Lab",
@@ -36,7 +36,7 @@ const equipment = [
     serialNumber: "PRUSA9876",
     assetTag: "EQ-002",
     subunits: [
-      { name: "Filament Spool", brandname: "Prusament", modelname: "PLA Orange" }
+      { _id: "subunit-2", name: "Filament Spool", brandname: "Prusament", modelname: "PLA Orange" }
     ],
     labNumber: "202",
     labName: "Fabrication Lab",
@@ -58,7 +58,7 @@ const equipment = [
     serialNumber: "HAASVF2345",
     assetTag: "EQ-003",
     subunits: [
-      { name: "Spindle Motor", brandname: "Haas", serialNumber: "SPINDLE5678" }
+      { _id: "subunit-3", name: "Spindle Motor", brandname: "Haas", serialNumber: "SPINDLE5678" }
     ],
     labNumber: "303",
     labName: "Manufacturing Lab",
@@ -79,7 +79,7 @@ const equipment = [
     serialNumber: "OLYMP1234",
     assetTag: "EQ-004",
     subunits: [
-      { name: "Objective Lens", brandname: "Olympus", modelname: "Plan 40x" }
+      { _id: "subunit-4", name: "Objective Lens", brandname: "Olympus", modelname: "Plan 40x" }
     ],
     labNumber: "404",
     labName: "Biology Lab",
