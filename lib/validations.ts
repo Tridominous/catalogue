@@ -49,3 +49,49 @@ export const SignUpSchema = z.object({
         message: "Password must contain at least one special character.",
       }),
   });
+
+
+
+  // Define a custom schema for file uploads
+  const FileSchema = z.instanceof(File);
+  
+  // Define a custom schema for subunits
+  const SubunitSchema = z.object({
+      name: z.string().min(2).max(100),
+      brandname: z.string().min(2).max(100).optional(),
+      modelname: z.string().min(2).max(100).optional(),
+      serialNumber: z.string().min(2).max(25).optional(),
+      assetTag: z.string().min(2).max(25).optional(),
+  });
+  
+  export const EquipmentSchema = z.object({
+      name: z.string().min(2).max(100),
+      brandname: z.string().min(2).max(100).optional(),
+      modelname: z.string().min(2).max(100).optional(),
+      serialNumber: z.string().min(2).max(25).optional(),
+      assetTag: z.string().min(2).max(25).optional(),
+      subunits: z.array(SubunitSchema).optional(),
+      labNumber: z.string().min(2).max(100),
+      customLabNumber: z.string().optional(),
+      labName: z.string().min(2).max(100).optional(),
+      team: z.string().min(2).max(25),
+      serviceDate: z.date().optional(),
+      category: z.string().min(2).max(100),
+      customCategory: z.string().optional(),
+      comment: z.string().min(2).max(150).optional(),
+      imgUrl: z.union([z.string(), FileSchema, z.undefined()]).optional(),
+      amount: z.number().int().min(1).max(1000).optional(),
+      
+    }).refine(
+      (data) => !(data.category === "other" && (!data.customCategory || data.customCategory.trim() === "")),
+      {
+        message: "Custom category is required when 'Other' is selected",
+        path: ["customCategory"],
+      }
+    ).refine(
+      (data) => !(data.labNumber === "other" && (!data.customLabNumber || data.customLabNumber.trim() === "")),
+      {
+        message: "Custom lab number is required when 'Other' is selected",
+        path: ["customLabNumber"],
+      }
+    );

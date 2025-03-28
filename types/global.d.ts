@@ -1,5 +1,5 @@
 
-interface Categories {
+interface Category {
     _id: string,
     name: string,
 }
@@ -33,8 +33,9 @@ interface Equipment {
         team: string,
         serviceDate?: Date,
         comment?: string,
-        categories: Categories[],
+        category: Category,
         imgUrl?: string,
+        amount?: string | number,
         author?: Author,
         views?: string | number,
         createdAt: Date,

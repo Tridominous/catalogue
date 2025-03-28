@@ -28,3 +28,7 @@ export const getTimeStamp = (date: Date) => {
   }
   return "just now";
 };
+
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
+
+export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
